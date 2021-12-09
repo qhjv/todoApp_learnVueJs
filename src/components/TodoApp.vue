@@ -1,26 +1,29 @@
 <template>
     <div>
         <TodoForm/>
-        <ul>
+        <ul class="mt-3 w-full">
             <li
+                class="w-full flex justify-start items-center bg-gray-100 py-1 px-3 rounded-sm mt-1"
                 v-for="todo in todos"
                 :key="todo.id"
-                :class="todo.completed ? 'completed' : ''"
+                :class="todo.completed ? 'completed bg-gray-100 text-gray-400' : ''"
             >
-                {{todo.title}}
+                <p :class="todo.completed ? 'line-through flex-1 text-sm' : 'flex-1 text-sm'">
+                    {{todo.title}}
+                </p>   
                 <input
                     type="checkbox"
                     :checked="todo.completed"
                     @change="CHANGE_COMPLETE(todo.id)"
                 />
-                <button @click="deleteTodo(todo.id)">Xóa</button>
+                <button class="ml-2 px-2 rounded-sm bg-red-400 text-white cursor-pointer no-underline text-sm" @click="deleteTodo(todo.id)">Xóa</button>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
-import TodoForm from './addToDo.vue'
+import TodoForm from './AddTodo.vue'
 import { mapMutations,mapGetters,mapActions } from 'vuex'
 export default {
     name:"TodoApp",
@@ -35,7 +38,7 @@ export default {
             }
         }
     },
-    computed: mapGetters(['todos', 'isAuthenticated']),
+    computed: mapGetters(['todos']),
     methods: {
 		...mapMutations(['CHANGE_COMPLETE']),
         ...mapActions(['deleteTodo'])
@@ -44,7 +47,5 @@ export default {
 </script>
 
 <style>
-    .completed{
-        text-decoration: line-through;
-    }
+    
 </style>

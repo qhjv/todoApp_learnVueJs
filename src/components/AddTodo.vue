@@ -1,7 +1,16 @@
 <template>
-    <form @submit="onSubmit">
-		<input type="text" v-model="title" />
-		<input type="submit" value="Add" />
+    <form @submit="onSubmit" class="mt-10 flex justify-between">
+		<input 
+            class="border-2 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent rounded-sm pl-2 text-xs flex-1" 
+            type="text" 
+            v-model="title" 
+            placeholder="new todo ..."
+        />
+		<input 
+            class="ml-2 pr-6 pl-6 rounded-sm text-sm bg-purple-600 text-white cursor-pointer" 
+            type="submit" 
+            value="Add" 
+        />
 	</form>
 </template>
 
